@@ -7,11 +7,11 @@ Listen  199.26.80.62:80
 
 <IfDefine SSL>
    Listen  199.26.80.63:443
-	Listen  199.26.80.64:443
-	Listen  199.26.80.65:443
-	Listen  199.26.80.62:443
+   Listen  199.26.80.64:443
+   Listen  199.26.80.65:443
+   Listen  199.26.80.62:443
 	
-    	SSLPassPhraseDialog exec:/home/porta-configurator/bin/ssl-passphrase-helper.pl
+SSLPassPhraseDialog exec:/home/porta-configurator/bin/ssl-passphrase-helper.pl
 </IfDefine>
 
 
