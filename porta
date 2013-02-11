@@ -1,0 +1,144 @@
+Listen  199.26.80.63:80
+Listen  199.26.80.64:80
+Listen  199.26.80.65:80
+Listen  199.26.80.62:80
+
+
+
+<IfDefine SSL>
+   Listen  199.26.80.63:443
+	Listen  199.26.80.64:443
+	Listen  199.26.80.65:443
+	Listen  199.26.80.62:443
+	
+    	SSLPassPhraseDialog exec:/home/porta-configurator/bin/ssl-passphrase-helper.pl
+</IfDefine>
+
+
+#vendor selfcaree
+<VirtualHost 199.26.80.65:443>
+    DocumentRoot "/home/porta-admin/apache/vendor_selfcare/"
+
+    Alias /images/ "/home/porta-admin/apache/images/"
+    Alias /errors/ "/home/porta-admin/apache/errors/"
+    Alias /style/ext/ "/usr/share/javascript/extjs-3.3/"
+    Alias /style/yui/ "/usr/share/javascript/yui-2.8.0/"
+    Alias /style/ "/home/porta-admin/apache/js_css/"  
+    Alias /brandpane/ "/home/porta-admin/apache/brandpane/"
+
+
+    ServerName vendors.connectone.ca:443
+    ServerAdmin root@localhost
+    
+
+   
+
+	ErrorLog /porta_var/199.26.80.52/log/httpd-error-web.log
+    CustomLog /porta_var/199.26.80.52/log/httpd-access-web.log custom_format
+
+    SSLEngine on
+    SSLProtocol -ALL +SSLv3 +TLSv1
+    SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+    SSLCertificateFile /porta_var/certs/selfcare.connectone.ca.crt
+    SSLCertificateKeyFile /porta_var/certs/selfcare.connectone.ca.key
+
+    SetEnv Porta_Realm vendor
+    PerlAddVar MasonCompRoot "porta100 => /home/porta-admin/apache"
+
+</VirtualHost>
+
+#customer selfcare
+<VirtualHost 199.26.80.62:443>
+    DocumentRoot "/home/porta-admin/apache/customer_selfcare/"
+
+    Alias /images/ "/home/porta-admin/apache/images/"
+    Alias /errors/ "/home/porta-admin/apache/errors/"
+    Alias /style/ext/ "/usr/share/javascript/extjs-3.3/"
+    Alias /style/yui/ "/usr/share/javascript/yui-2.8.0/"
+    Alias /style/ "/home/porta-admin/apache/js_css/"
+    Alias /IPC/ "/home/porta-admin/apache/IPCentrex_SelfCare/"
+    Alias /brandpane/ "/home/porta-admin/apache/brandpane/"
+
+    ServerName customers.selfcare.connectone.ca:443
+    ServerAdmin root@localhost
+    
+
+    Alias /style/yui/ "/usr/share/javascript/yui-2.8.0/"
+    Alias /style/ "/home/porta-admin/apache/js_css/"
+    Alias /IPC/ "/home/porta-admin/apache/IPCentrex_SelfCare/"
+    Alias /brandpane/ "/home/porta-admin/apache/brandpane/"
+
+    ServerName customers.selfcare.connectone.ca:443
+    ServerAdmin root@localhost
+    
+
+    ErrorLog /porta_var/199.26.80.52/log/httpd-error-web.log
+    CustomLog /porta_var/199.26.80.52/log/httpd-access-web.log custom_format
+
+    SSLEngine on
+    SSLProtocol -ALL +SSLv3 +TLSv1
+    SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+    SSLCertificateFile /porta_var/certs/selfcare.connectone.ca.crt
+    SSLCertificateKeyFile /porta_var/certs/selfcare.connectone.ca.key
+
+    SetEnv Porta_Realm customer
+    PerlAddVar MasonCompRoot "porta100 => /home/porta-admin/apache"
+</VirtualHost>
+
+
+#accounts selfcare
+<VirtualHost 199.26.80.63:443>
+    DocumentRoot "/home/porta-admin/apache/accounts/"
+
+    Alias /images/ "/home/porta-admin/apache/images/"
+    Alias /errors/ "/home/porta-admin/apache/errors/"
+    Alias /style/ext/ "/usr/share/javascript/extjs-3.3/"
+    Alias /style/yui/ "/usr/share/javascript/yui-2.8.0/"
+    Alias /style/ "/home/porta-admin/apache/js_css/" 
+    Alias /IPC/ "/home/porta-admin/apache/IPCentrex_SelfCare/"
+    Alias /brandpane/ "/home/porta-admin/apache/brandpane/"
+
+    ServerName accounts.selfcare.connectone.ca:443
+    ServerAdmin root@localhost
+    
+
+    ErrorLog /porta_var/199.26.80.52/log/httpd-error-web.log
+    CustomLog /porta_var/199.26.80.52/log/httpd-access-web.log custom_format
+
+    SSLEngine on
+    SSLProtocol -ALL +SSLv3 +TLSv1
+    SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+    SSLCertificateFile /porta_var/certs/selfcare.connectone.ca.crt
+    SSLCertificateKeyFile /porta_var/certs/selfcare.connectone.ca.key
+
+    SetEnv Porta_Realm accounts
+    PerlAddVar MasonCompRoot "porta100 => /home/porta-admin/apache"
+</VirtualHost>
+
+
+<VirtualHost  199.26.80.64:443>
+    DocumentRoot "/home/porta-admin/apache/cc_staff/"
+
+    Alias /images/ "/home/porta-admin/apache/images/"
+    Alias /errors/ "/home/porta-admin/apache/errors/"
+    Alias /style/ext/ "/usr/share/javascript/extjs-3.3/"
+    Alias /style/yui/ "/usr/share/javascript/yui-2.8.0/"
+    Alias /style/ "/home/porta-admin/apache/js_css/" 
+    Alias /brandpane/ "/home/porta-admin/apache/brandpane/"
+
+    ServerName cc-staff.selfcare.connectone.ca:443
+    ServerAdmin root@localhost
+    
+
+    ErrorLog /porta_var/199.26.80.52/log/httpd-error-web.log
+    CustomLog /porta_var/199.26.80.52/log/httpd-access-web.log custom_format
+
+    SSLEngine on
+    SSLProtocol -ALL +SSLv3 +TLSv1
+    SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+    SSLCertificateFile /porta_var/certs/selfcare.connectone.ca.crt
+    SSLCertificateKeyFile /porta_var/certs/selfcare.connectone.ca.key
+
+    SetEnv Porta_Realm cc_staff
+    PerlAddVar MasonCompRoot "porta100 => /home/porta-admin/apache"
+</VirtualHost>
